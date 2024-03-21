@@ -143,6 +143,28 @@
                     ##################################################
 
                     def my_gen_function():
+                        # Retrieve user input for color, shape, and symmetry values
+                        color = input("Enter color (Red, Yellow, White, Pink, Orange, Purple): ")
+                        shape = input("Enter shape (Round, Oval, Star-shaped, Cup-shaped, Bowl-shaped): ")
+                        symmetry = input("Enter symmetry (Radial, Bilateral, Asymmetrical): ")
+                    
+                        # Convert color, shape, and symmetry to numeric values using mappings
+                        color_mapping = {'Red': 1, 'Yellow': 2, 'White': 3, 'Pink': 4, 'Orange': 5, 'Purple': 6}
+                        shape_mapping = {'Round': 1, 'Oval': 2, 'Star-shaped': 3, 'Cup-shaped': 4, 'Bowl-shaped': 5}
+                        symmetry_mapping = {'Radial': 1, 'Bilateral': 2, 'Asymmetrical': 3}
+                        
+                        color_numeric = color_mapping.get(color, 0)
+                        shape_numeric = shape_mapping.get(shape, 0)
+                        symmetry_numeric = symmetry_mapping.get(symmetry, 0)
+                        
+                        # Use numeric values to generate an image based on the KNN algorithm
+                        conditions_vector = np.array([color_numeric, shape_numeric, symmetry_numeric])
+                        generated_image = predict(conditions_vector)
+                    
+                        # Display the generated image along with the input conditions
+                        plt.imshow(generated_image)
+                        plt.title(f"Color: {color}, Shape: {shape}, Symmetry: {symmetry}")
+                        plt.show()
                     
                         test_x = get_np_conditions_vector()
 
